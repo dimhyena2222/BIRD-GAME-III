@@ -1,0 +1,245 @@
+/* ═══════════════════════════════════════════════════════
+   BIRD GAME 3 — MAIN STYLESHEET
+   Aesthetic: Uncanny Valley × Phonk
+   ═══════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+  --bg-dark: #0a0a0c;
+  --phonk-red: #ff1a1a;
+  --phonk-purple: #8b00ff;
+  --phonk-grey: #2a2a2e;
+  --text-main: #e0ddd5;
+  --text-accent: #ff3c3c;
+  --hud-green: #00ff88;
+  --hud-yellow: #ffe600;
+  --hud-red: #ff2200;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-dark);
+  font-family: var(--font-mono);
+  color: var(--text-main);
+  cursor: crosshair;
+}
+
+canvas {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+/* ─── HUD ─── */
+#hud {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: none; /* shown during gameplay */
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 30px;
+  pointer-events: none;
+  font-family: var(--font-mono);
+}
+
+#hud.active {
+  display: flex;
+}
+
+.hud-label {
+  font-size: 10px;
+  letter-spacing: 3px;
+  opacity: 0.5;
+  display: block;
+}
+
+#hud-speed-val, #hud-altitude-val {
+  font-family: var(--font-display);
+  font-size: 48px;
+  line-height: 1;
+}
+
+.hud-unit {
+  font-size: 12px;
+  opacity: 0.4;
+}
+
+#hud-stamina {
+  width: 200px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+#hud-stamina-bar {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--hud-green), var(--hud-yellow));
+  transition: width 0.1s ease;
+}
+
+#hud-integrity-val {
+  font-family: var(--font-display);
+  font-size: 36px;
+}
+
+/* ─── VFX Overlay (Chromatic Aberration / Tunnel Vision) ─── */
+#vfx-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.8) 100%);
+  mix-blend-mode: multiply;
+}
+
+#vfx-overlay.active {
+  opacity: 1;
+}
+
+/* ─── MAIN MENU ─── */
+#main-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg, rgba(10,10,12,0.95) 0%, rgba(30,0,50,0.9) 100%);
+  backdrop-filter: blur(8px);
+}
+
+#main-menu.hidden {
+  display: none;
+}
+
+.menu-title {
+  font-family: var(--font-display);
+  font-size: 120px;
+  letter-spacing: 12px;
+  color: var(--text-main);
+  text-shadow: 0 0 60px var(--phonk-purple), 0 0 120px rgba(139, 0, 255, 0.3);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.menu-subtitle {
+  font-size: 14px;
+  letter-spacing: 8px;
+  color: var(--phonk-red);
+  opacity: 0.7;
+  margin-bottom: 60px;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.menu-btn {
+  font-family: var(--font-display);
+  font-size: 28px;
+  letter-spacing: 4px;
+  padding: 14px 60px;
+  background: transparent;
+  color: var(--text-main);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.menu-btn:hover {
+  background: var(--phonk-red);
+  border-color: var(--phonk-red);
+  color: #fff;
+  box-shadow: 0 0 30px rgba(255, 26, 26, 0.4);
+}
+
+.menu-btn.accent {
+  background: var(--phonk-purple);
+  border-color: var(--phonk-purple);
+}
+
+.menu-btn.accent:hover {
+  background: #a020ff;
+  box-shadow: 0 0 40px rgba(139, 0, 255, 0.6);
+}
+
+/* ─── Species Select ─── */
+#species-select {
+  margin-top: 40px;
+  text-align: center;
+}
+
+#species-select h2 {
+  font-family: var(--font-display);
+  font-size: 32px;
+  letter-spacing: 6px;
+  margin-bottom: 20px;
+}
+
+#species-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 140px);
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.species-card {
+  padding: 16px 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.species-card:hover,
+.species-card.selected {
+  border-color: var(--phonk-red);
+  background: rgba(255, 26, 26, 0.1);
+}
+
+.species-card .species-icon {
+  font-size: 36px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.species-card .species-name {
+  font-family: var(--font-display);
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+
+.species-card .species-mass {
+  font-size: 10px;
+  opacity: 0.4;
+}
+
+.hidden {
+  display: none !important;
+}

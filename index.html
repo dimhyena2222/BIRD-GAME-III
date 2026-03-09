@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bird Game 3 — The Kinetic Economy</title>
+  <link rel="stylesheet" href="/src/styles/main.css" />
+</head>
+<body>
+  <!-- HUD Overlay -->
+  <div id="hud">
+    <div id="hud-speed">
+      <span class="hud-label">SPEED</span>
+      <span id="hud-speed-val">0</span>
+      <span class="hud-unit">mph</span>
+    </div>
+    <div id="hud-altitude">
+      <span class="hud-label">ALT</span>
+      <span id="hud-altitude-val">0</span>
+      <span class="hud-unit">m</span>
+    </div>
+    <div id="hud-stamina">
+      <div id="hud-stamina-bar"></div>
+    </div>
+    <div id="hud-integrity">
+      <span class="hud-label">INTEGRITY</span>
+      <span id="hud-integrity-val">100%</span>
+    </div>
+  </div>
+
+  <!-- Chromatic Aberration / Tunnel Vision overlay -->
+  <div id="vfx-overlay"></div>
+
+  <!-- Main Menu -->
+  <div id="main-menu">
+    <h1 class="menu-title">BIRD GAME III</h1>
+    <p class="menu-subtitle">THE KINETIC ECONOMY</p>
+    <div class="menu-buttons">
+      <button id="btn-play" class="menu-btn">ENTER THE BACKYARD</button>
+      <button id="btn-aviary" class="menu-btn">THE AVIARY</button>
+      <button id="btn-nest" class="menu-btn">THE NEST</button>
+    </div>
+    <div id="species-select" class="hidden">
+      <h2>SELECT YOUR SPECIES</h2>
+      <div id="species-grid"></div>
+      <button id="btn-launch" class="menu-btn accent">LAUNCH</button>
+    </div>
+  </div>
+
+  <!-- Canvas injected by Three.js -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
