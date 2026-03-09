@@ -8,7 +8,6 @@
  */
 
 import * as CANNON from 'cannon-es';
-import * as THREE from 'three';
 import {
   GRAVITY,
   AIR_DENSITY,
